@@ -1,12 +1,8 @@
 name: Deploy URL Shortener
 
 on:
-   workflow_dispatch:
-      inputs:
-         default_redirect:
-            description: "a"
-            required: true
-            default: "https://google.com"
+   push:
+      branches: ["main"]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -30,6 +26,8 @@ jobs:
            uses: actions/configure-pages@v3
          - name: Generate URL Shortener
            uses: pndurette/gh-pages-url-shortener-action@v1
+           with:
+              default_redirect: "https://duckduckgo.com"
          - name: Upload artifact
            uses: actions/upload-pages-artifact@v1
 
