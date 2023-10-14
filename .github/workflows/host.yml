@@ -9,6 +9,7 @@ permissions:
    contents: read
    pages: write
    id-token: write
+   deployments: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -42,3 +43,20 @@ jobs:
          - name: Deploy to GitHub Pages
            id: deployment
            uses: actions/deploy-pages@v1
+         
+         - name: Publish to Cloudflare Pages
+           uses: cloudflare/pages-action@v1
+           with:
+             apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+             accountId: 462822eb14e18c2e90d2059a179e99b8
+             projectName: trevi
+             directory: .
+             # Optional: Enable this if you want to have GitHub Deployments triggered
+             gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+             # Optional: Switch what branch you are publishing to.
+             # By default this will be the branch which triggered this workflow
+             branch: main
+             # Optional: Change the working directory
+             workingDirectory: _site
+             # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
+             wranglerVersion: '3'
