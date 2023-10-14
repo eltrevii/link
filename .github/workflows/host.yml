@@ -27,7 +27,7 @@ jobs:
          - name: Generate URL Shortener
            uses: pndurette/gh-pages-url-shortener-action@v1
            with:
-              default_redirect: "https://duckduckgo.com"
+              default_redirect: "/megathread"
          - name: Upload artifact
            uses: actions/upload-pages-artifact@v1
 
