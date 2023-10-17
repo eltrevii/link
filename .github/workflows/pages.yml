@@ -42,3 +42,20 @@ jobs:
          - name: Deploy to GitHub Pages
            id: deployment
            uses: actions/deploy-pages@v1
+   publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+         - name: Publish to Cloudflare Pages
+           uses: cloudflare/pages-action@v1
+           with:
+             apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+             accountId: 462822eb14e18c2e90d2059a179e99b8
+             projectName: trevi
+             directory: .
+             gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+             branch: main
+             wranglerVersion: '3'
