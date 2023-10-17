@@ -42,6 +42,7 @@ jobs:
          - name: Deploy to GitHub Pages
            id: deployment
            uses: actions/deploy-pages@v1
+           
    publish:
     runs-on: ubuntu-latest
     permissions:
@@ -49,6 +50,9 @@ jobs:
       deployments: write
     name: Publish to Cloudflare Pages
     steps:
+         - name: Checkout
+           uses: actions/checkout@v3
+    
          - name: Publish to Cloudflare Pages
            uses: cloudflare/pages-action@v1
            with:
